@@ -1,0 +1,108 @@
+package com.example.giusseppe.controldeactivos.Database;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+/**
+ * Created by Giusseppe on 03/07/2017.
+ */
+
+public class DatabaseHelper extends SQLiteOpenHelper{
+
+    public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, "PRUEBA11", factory, version);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        //Creación de las tablas en la base de datos
+
+        String CENTRO_COSTOS = "CREATE TABLE CENTRO_COSTOS(COD_CENTRO_COSTO INTEGER PRIMARY KEY, DESCRIPCION TEXT)";
+        sqLiteDatabase.execSQL(CENTRO_COSTOS);
+
+        String UBICACIONES   = "CREATE TABLE UBICACIONES(COD_UBICACION INTEGER PRIMARY KEY, DESCRIPCION TEXT)";
+        sqLiteDatabase.execSQL(UBICACIONES);
+
+        String TIPOS ="CREATE TABLE TIPOS(COD_TIPO INTEGER PRIMARY KEY, DESCRIPCION TEXT)";
+        sqLiteDatabase.execSQL(TIPOS);
+
+        String GRUPO = "CREATE TABLE GRUPO(COD_GRUPO INTEGER PRIMARY KEY, DESCRIPCION TEXT)" ;
+        sqLiteDatabase.execSQL(GRUPO);
+
+        String RESPONSABLES  = "CREATE TABLE RESPONSABLES(COD_RESPONSABLE INTEGER PRIMARY KEY, NOMBRE TEXT, USUARIO TEXT, PASSWORD TEXT, EMAIL TEXT)";
+        sqLiteDatabase.execSQL(RESPONSABLES);
+
+        String ACTIVOS ="CREATE TABLE ACTIVOS(COD_ACTIVO INTEGER PRIMARY KEY, DESCRIPCION TEXT, COD_CENTRO_COSTO INTEGER, COD_UBICACION INTEGER, COD_TIPO INTEGER, COD_GRUPO INTEGER, " +
+                " COD_RESPONSABLE INTEGER, MODELO TEXT, SERIE TEXT, PLACA TEXT, VALOR_COMPRA REAL, VIDA_UTIL INTEGER)";
+        sqLiteDatabase.execSQL(ACTIVOS);
+
+        //Insertamos datos a nuestras tablas
+
+        /*INSERTAMOS REGISTRO EN LA TABLA CENTRO_COSTOS*/
+        sqLiteDatabase.execSQL("INSERT INTO CENTRO_COSTOS VALUES (1,'TALLER DE MECANICA HYUNDAI')");
+        sqLiteDatabase.execSQL("INSERT INTO CENTRO_COSTOS VALUES (2,'TALLER DE MECANICA REDSON')");
+        sqLiteDatabase.execSQL("INSERT INTO CENTRO_COSTOS VALUES (3,'TALLER DE MECANICA MAZDA')");
+        sqLiteDatabase.execSQL("INSERT INTO CENTRO_COSTOS VALUES (4,'TALLER DE MECANICA AUDI')");
+        sqLiteDatabase.execSQL("INSERT INTO CENTRO_COSTOS VALUES (5,'TALLER DE MECANICA BMW')");
+        sqLiteDatabase.execSQL("INSERT INTO CENTRO_COSTOS VALUES (6,'TALLER DE MECANICA MERCEDES-BENZ')");
+        /*INSERTAMOS REGISTRO EN LA TABLA UBICACIONES */
+        sqLiteDatabase.execSQL("INSERT INTO UBICACIONES VALUES (1,'SEDE MIRAFLORES-AV. DEL EJERCITO 1200')");
+        sqLiteDatabase.execSQL("INSERT INTO UBICACIONES VALUES (2,'SEDE LA VICTORIA-LOS CORALES 499')");
+        sqLiteDatabase.execSQL("INSERT INTO UBICACIONES VALUES (3,'SEDE JAVIER PRADO-5835')");
+        sqLiteDatabase.execSQL("INSERT INTO UBICACIONES VALUES (4,'SEDE SURCO-EL DERBY 150')");
+        sqLiteDatabase.execSQL("INSERT INTO UBICACIONES VALUES (5,'SEDE SURQUILLO-AV. DOMINGO ORUE 224')");
+        sqLiteDatabase.execSQL("INSERT INTO UBICACIONES VALUES (6,'SEDE CHORRILLOS-LOS FAISANES 313')");
+
+        /*INSERTAMOS REGISTRO EN LA TABLA TIPOS*/
+        sqLiteDatabase.execSQL("INSERT INTO TIPOS VALUES (2001,'LLANTAS ARO 16')");
+        sqLiteDatabase.execSQL("INSERT INTO TIPOS VALUES (2002,'FAROS LATERALES')");
+        sqLiteDatabase.execSQL("INSERT INTO TIPOS VALUES (2003,'ESPEJOS RETROVISORES')");
+        sqLiteDatabase.execSQL("INSERT INTO TIPOS VALUES (2004,'ACEITE MULTIGRADOS')");
+        sqLiteDatabase.execSQL("INSERT INTO TIPOS VALUES (2005,'IMPLEMENTACION DE TURBO')");
+        sqLiteDatabase.execSQL("INSERT INTO TIPOS VALUES (2006,'FORROS DE ASIENTOS')");
+        /*INSERTAMOS REGISTRO EN LA TABLA GRUPO*/
+        sqLiteDatabase.execSQL("INSERT INTO GRUPO VALUES (2801,'CAMBIO DE AUTOPARTES')");
+        sqLiteDatabase.execSQL("INSERT INTO GRUPO VALUES (2802,'HERRAMIENTAS ORIGINALES')");
+        sqLiteDatabase.execSQL("INSERT INTO GRUPO VALUES (2803,'HERRAMIENTAS GENERICAS')");
+        sqLiteDatabase.execSQL("INSERT INTO GRUPO VALUES (2804,'IMPLEMENTACION DE AUTOPARTES')");
+        sqLiteDatabase.execSQL("INSERT INTO GRUPO VALUES (2805,'MAQUINARIAs DE VEHICULOS')");
+        sqLiteDatabase.execSQL("INSERT INTO GRUPO VALUES (2806,'ACCESORIOS PARA VEHICULOS')");
+        /*INSERTAMOS REGISTRO EN LA TABLA RESPONSABLE*/
+        sqLiteDatabase.execSQL("INSERT INTO RESPONSABLES VALUES (101,'GIUSSEPPE MOROTE','gmorote','morote','gmorote@gmail.com')");
+        sqLiteDatabase.execSQL("INSERT INTO RESPONSABLES VALUES (102,'YEFRIN LAURA','ylaura','laura','ylaura@gmail.com')");
+        sqLiteDatabase.execSQL("INSERT INTO RESPONSABLES VALUES (103,'ALONSO POSTIGO','amoreno','moreno','apostigo@gmail.com')");
+        sqLiteDatabase.execSQL("INSERT INTO RESPONSABLES VALUES (104,'ALEXANDER HUAYAMA','ahuayama','huayama','ahuayama@gmail.com')");
+        sqLiteDatabase.execSQL("INSERT INTO RESPONSABLES VALUES (105,'FLAVIO CASTILLO','fcastillo','castillo','fcastillo@gmail.com')");
+        sqLiteDatabase.execSQL("INSERT INTO RESPONSABLES VALUES (106,'PEPITO GONZALES','pgonzales','gonzales','pgonzales@gmail.com')");
+
+        /*INSERTAMOS REGISTRO EN LA TABLA ACTIVOS*/
+
+        sqLiteDatabase.execSQL("INSERT INTO ACTIVOS VALUES (4001,'APLICACION DE HERRAMIENTA',1,1,2001,2801,101,'EQUIPO PARA VEHICULOS','LL-2017','TQ-3005',3500.50,20)");
+        sqLiteDatabase.execSQL("INSERT INTO ACTIVOS VALUES (4002,'EQUIPO ORIGINAL',2,2,2002,2802,102,'FAROS DEL AÑO','LL-2017','XT-2589',5000.50,10)");
+        sqLiteDatabase.execSQL("INSERT INTO ACTIVOS VALUES (4003,'EQUIPO GENERICO',3,3,2003,2803,103,'RETROVISORES DEL AÑO','LL-2017','AS-1449',1000.50,6)");
+        sqLiteDatabase.execSQL("INSERT INTO ACTIVOS VALUES (4004,'IMPLEMENTACION DE HERRAMIENTA',4,4,2004,2804,104,'CAMBIO ACEITES','GH-2017','SP-9586',800.50,15)");
+        sqLiteDatabase.execSQL("INSERT INTO ACTIVOS VALUES (4005,'APLICACION PARA VEHICULO',5,5,2005,2805,105,'CONSECIONARIA PARA TURBO','XD-2017','PB-6398',8000.50,4)");
+        sqLiteDatabase.execSQL("INSERT INTO ACTIVOS VALUES (4006,'AUTOPARTE PARA VEHICULO',6,6,2006,2806,106,'AUTOPARTES PARA VEHICULO','PL-2017','BJ-8257',3000.50,2)");
+
+        /**Se Carga mediante la lectura de Escaner a los DNI**/
+        sqLiteDatabase.execSQL("INSERT INTO ACTIVOS VALUES (76407102,'APLICACION DE HERRAMIENTA',1,1,2001,2801,101,'MODELO DEL AÑO','LL-2017','TQ-3005',3500.50,20)");
+        sqLiteDatabase.execSQL("INSERT INTO ACTIVOS VALUES (74315140,'EQUIPO ORIGINAL',2,2,2002,2802,102,'FAROS DEL AÑO','LL-2017','XT-2589',5000.50,10)");
+        sqLiteDatabase.execSQL("INSERT INTO ACTIVOS VALUES (72094565,'APLICACION PARA VEHICULO',5,5,2005,2805,105,'CONSECIONARIA PARA TURBO','XD-2017','PB-6398',8000.50,4)");
+        sqLiteDatabase.execSQL("INSERT INTO ACTIVOS VALUES (75441247,'EQUIPO GENERICO',3,3,2003,2803,103,'RETROVISORES DEL AÑO','LL-2017','AS-1449',1000.50,6)");
+        sqLiteDatabase.execSQL("INSERT INTO ACTIVOS VALUES (72959266,'IMPLEMENTACION DE HERRAMIENTA',4,4,2004,2804,104,'CAMBIO ACEITES','GH-2017','SP-9586',800.50,15)");
+        /*
+        *   72094565 = flavio
+                72959266 = Alexander Giovanni Huayama Caro
+        74315140 =  yefri
+        75441247  = alonso
+        *
+        * */
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+    }
+}

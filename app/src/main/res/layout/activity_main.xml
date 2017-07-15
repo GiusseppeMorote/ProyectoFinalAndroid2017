@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="20dp"
+    android:paddingBottom="50dp"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp"
+    android:background="@color/BlancoFondo"
+    tools:context="com.example.giusseppe.controldeactivos.Principal.MainActivity">
+
+    <ScrollView
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp">
+
+            <TextView
+                android:textSize="25sp"
+                android:text="Usuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:layout_marginBottom="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:id="@+id/etUsuario"
+                android:layout_gravity="center_horizontal"
+                android:textSize="25sp"/>
+
+            <TextView
+                android:textSize="25sp"
+                android:text="Contraseña"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:layout_marginBottom="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:id="@+id/etPassword"
+                android:layout_gravity="right"
+                android:textSize="25sp"/>
+
+
+            <Button
+
+                android:textColor="@color/colorClarito"
+                android:backgroundTint="@color/colorOscurito"
+                android:id="@+id/btnIngresar"
+                android:text="Ingresar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        </ScrollView>
+
+</RelativeLayout>
